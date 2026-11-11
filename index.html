@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>آکادمی زبان آوا | یادگیری انگلیسی کاربردی</title>
+  <meta name="description" content="آکادمی زبان آوا؛ دوره‌های کاربردی واژگان، مکالمه، گرامر و شنیداری انگلیسی همراه با پارتنر مکالمه و داشبورد آموزشی.">
+  <meta name="theme-color" content="#173B70">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <button class="brand" onclick="go('home')" aria-label="رفتن به خانه">
+        <span class="brand-mark"><i data-lucide="graduation-cap" style="width:20px;height:20px"></i></span>
+        <span class="brand-name">آکادمی زبان آوا</span>
+      </button>
+
+      <nav class="nav" aria-label="ناوبری اصلی">
+        <button class="nav-link" data-route="home" onclick="go('home')">خانه</button>
+        <button class="nav-link" data-route="courses" onclick="go('courses')">دوره‌ها</button>
+        <button class="nav-link" data-route="teachers" onclick="go('teachers')">معلم‌ها</button>
+        <button class="nav-link" data-route="partner" onclick="go('partner')">پارتنر مکالمه</button>
+        <button class="nav-link" data-route="about" onclick="go('about')">درباره ما</button>
+        <button class="nav-link" data-route="support" onclick="go('support')">پشتیبانی</button>
+      </nav>
+
+      <div class="actions">
+        <button class="btn btn-light btn-sm" onclick="go('login')">ورود</button>
+        <button class="btn btn-primary btn-sm" onclick="go('signup')">ثبت‌نام</button>
+      </div>
+
+      <button class="menu-btn" onclick="toggleMenu()" aria-label="باز کردن منو" aria-expanded="false" id="menuBtn">
+        <i data-lucide="menu" style="width:22px;height:22px"></i>
+      </button>
+    </div>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="منوی موبایل">
+      <div class="grid">
+        <button class="side-link" onclick="go('home')">خانه</button>
+        <button class="side-link" onclick="go('courses')">دوره‌ها</button>
+        <button class="side-link" onclick="go('teachers')">معلم‌ها</button>
+        <button class="side-link" onclick="go('students')">هنرجویان</button>
+        <button class="side-link" onclick="go('partner')">پارتنر مکالمه</button>
+        <button class="side-link" onclick="go('support')">پشتیبانی</button>
+        <button class="side-link" onclick="go('dashboard')">داشبورد</button>
+        <button class="side-link" onclick="go('contact')">تماس با ما</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <section>
+          <div class="brand" style="color:#fff">
+            <span class="brand-mark" style="background:#fff;color:#173B70"><i data-lucide="graduation-cap" style="width:20px;height:20px"></i></span>
+            <strong>آکادمی زبان آوا</strong>
+          </div>
+          <p class="footer-links" style="margin-top:14px">یادگیری انگلیسی، ساده، کاربردی و همراه با تمرین واقعی.</p>
+        </section>
+        <section>
+          <h2>لینک‌های سریع</h2>
+          <div class="footer-links">
+            <button onclick="go('home')">خانه</button>
+            <button onclick="go('courses')">دوره‌ها</button>
+            <button onclick="go('teachers')">معلم‌ها</button>
+            <button onclick="go('students')">هنرجویان</button>
+          </div>
+        </section>
+        <section>
+          <h2>خدمات</h2>
+          <div class="footer-links">
+            <button onclick="go('support')">پشتیبانی</button>
+            <button onclick="go('partner')">پارتنر مکالمه</button>
+            <button onclick="go('support')">سؤالات متداول</button>
+            <button onclick="go('notifications')">اعلان‌ها</button>
+          </div>
+        </section>
+        <section>
+          <h2>تماس با ما</h2>
+          <p class="footer-links">۰۲۱-۱۲۳۴۵۶۷۸<br>hello@ava-academy.ir</p>
+          <div style="display:flex;gap:14px;margin-top:14px;color:#dbeafe">
+            <i data-lucide="instagram" style="width:20px;height:20px"></i>
+            <i data-lucide="send" style="width:20px;height:20px"></i>
+            <i data-lucide="linkedin" style="width:20px;height:20px"></i>
+          </div>
+        </section>
+      </div>
+      <div class="footer-bottom">
+        © تمامی حقوق این وب‌سایت محفوظ است.
+        <button onclick="go('terms')" style="text-decoration:underline;margin-inline-start:12px">Terms &amp; Conditions</button>
+        <button onclick="go('privacy')" style="text-decoration:underline;margin-inline-start:12px">Privacy Policy</button>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="bottom-nav" aria-label="ناوبری پایین">
+    <div class="wrap">
+      <button class="bottom-link" data-route="home" onclick="go('home')"><i data-lucide="home" style="width:20px;height:20px"></i>خانه</button>
+      <button class="bottom-link" data-route="courses" onclick="go('courses')"><i data-lucide="book-open" style="width:20px;height:20px"></i>دوره‌ها</button>
+      <button class="bottom-link" data-route="partner" onclick="go('partner')"><i data-lucide="messages-square" style="width:20px;height:20px"></i>پارتنر</button>
+      <button class="bottom-link" data-route="dashboard" onclick="go('dashboard')"><i data-lucide="layout-dashboard" style="width:20px;height:20px"></i>داشبورد</button>
+      <button class="bottom-link" data-route="signup" onclick="go('signup')"><i data-lucide="user-plus" style="width:20px;height:20px"></i>ثبت‌نام</button>
+    </div>
+  </nav>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
