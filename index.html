@@ -2,117 +2,41 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>آکادمی زبان آوا | یادگیری انگلیسی کاربردی</title>
-  <meta name="description" content="آکادمی زبان آوا؛ دوره‌های کاربردی واژگان، مکالمه، گرامر و شنیداری انگلیسی همراه با پارتنر مکالمه و داشبورد آموزشی.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>آکادمی زبان | انگلیسی برای دنیای واقعی تو</title>
+  <meta name="description" content="انگلیسی را فقط یاد نگیر؛ در زندگی استفاده کن. پکیج‌های آموزشی، درس کوتاه، مرور فاصله‌دار و پارتنر مکالمه انگلیسی.">
   <meta name="theme-color" content="#173B70">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <script defer src="assets/content.js"></script>
+  <script defer src="assets/learning.js"></script>
+  <script defer src="assets/app.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#app">رفتن به محتوای اصلی</a>
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <button class="brand" onclick="go('home')" aria-label="رفتن به خانه">
-        <span class="brand-mark"><i data-lucide="graduation-cap" style="width:20px;height:20px"></i></span>
-        <span class="brand-name">آکادمی زبان آوا</span>
-      </button>
-
-      <nav class="nav" aria-label="ناوبری اصلی">
-        <button class="nav-link" data-route="home" onclick="go('home')">خانه</button>
-        <button class="nav-link" data-route="courses" onclick="go('courses')">دوره‌ها</button>
-        <button class="nav-link" data-route="teachers" onclick="go('teachers')">معلم‌ها</button>
-        <button class="nav-link" data-route="partner" onclick="go('partner')">پارتنر مکالمه</button>
-        <button class="nav-link" data-route="about" onclick="go('about')">درباره ما</button>
-        <button class="nav-link" data-route="support" onclick="go('support')">پشتیبانی</button>
+      <a href="#/home" class="brand"><span class="brand-symbol" aria-hidden="true">a<span>•</span></span><span>آکادمی زبان<small>حرف بزن، زندگی کن.</small></span></a>
+      <nav class="desktop-nav" aria-label="منوی اصلی">
+        <a data-route="home" href="#/home">خانه</a>
+        <a data-route="courses" href="#/courses">پکیج‌ها</a>
+        <a data-route="classes" href="#/classes">کلاس‌ها</a>
+        <a data-route="partner" href="#/partner">پارتنر مکالمه <span class="nav-new">جدید</span></a>
+        <a data-route="teachers" href="#/teachers">مدرس‌ها</a>
+        <a data-route="pricing" href="#/pricing">اشتراک‌ها</a>
       </nav>
-
-      <div class="actions">
-        <button class="btn btn-light btn-sm" onclick="go('login')">ورود</button>
-        <button class="btn btn-primary btn-sm" onclick="go('signup')">ثبت‌نام</button>
-      </div>
-
-      <button class="menu-btn" onclick="toggleMenu()" aria-label="باز کردن منو" aria-expanded="false" id="menuBtn">
-        <i data-lucide="menu" style="width:22px;height:22px"></i>
-      </button>
+      <div class="header-actions"><a class="login-link" href="#/login">ورود</a><button class="btn btn-primary" onclick="startLearning()">شروع رایگان <i data-lucide="arrow-up-left" aria-hidden="true"></i></button></div>
+      <button class="menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="باز و بسته کردن منو" aria-controls="mobileMenu" aria-expanded="false"><i data-lucide="menu" aria-hidden="true"></i></button>
     </div>
-
-    <nav class="mobile-menu" id="mobileMenu" aria-label="منوی موبایل">
-      <div class="grid">
-        <button class="side-link" onclick="go('home')">خانه</button>
-        <button class="side-link" onclick="go('courses')">دوره‌ها</button>
-        <button class="side-link" onclick="go('teachers')">معلم‌ها</button>
-        <button class="side-link" onclick="go('students')">هنرجویان</button>
-        <button class="side-link" onclick="go('partner')">پارتنر مکالمه</button>
-        <button class="side-link" onclick="go('support')">پشتیبانی</button>
-        <button class="side-link" onclick="go('dashboard')">داشبورد</button>
-        <button class="side-link" onclick="go('contact')">تماس با ما</button>
-      </div>
-    </nav>
+    <nav id="mobileMenu" class="mobile-menu" aria-label="منوی موبایل"><a href="#/home" onclick="closeMenu()">خانه</a><a href="#/courses" onclick="closeMenu()">پکیج‌ها</a><a href="#/classes" onclick="closeMenu()">کلاس‌ها</a><a href="#/partner" onclick="closeMenu()">پارتنر مکالمه</a><a href="#/pricing" onclick="closeMenu()">اشتراک‌ها</a><a href="#/teachers" onclick="closeMenu()">مدرس‌ها</a><a href="#/students" onclick="closeMenu()">هنرجوها</a><a href="#/login" onclick="closeMenu()">ورود</a></nav>
   </header>
-
-  <main id="app"></main>
-
-  <footer class="footer">
-    <div class="wrap">
-      <div class="footer-grid">
-        <section>
-          <div class="brand" style="color:#fff">
-            <span class="brand-mark" style="background:#fff;color:#173B70"><i data-lucide="graduation-cap" style="width:20px;height:20px"></i></span>
-            <strong>آکادمی زبان آوا</strong>
-          </div>
-          <p class="footer-links" style="margin-top:14px">یادگیری انگلیسی، ساده، کاربردی و همراه با تمرین واقعی.</p>
-        </section>
-        <section>
-          <h2>لینک‌های سریع</h2>
-          <div class="footer-links">
-            <button onclick="go('home')">خانه</button>
-            <button onclick="go('courses')">دوره‌ها</button>
-            <button onclick="go('teachers')">معلم‌ها</button>
-            <button onclick="go('students')">هنرجویان</button>
-          </div>
-        </section>
-        <section>
-          <h2>خدمات</h2>
-          <div class="footer-links">
-            <button onclick="go('support')">پشتیبانی</button>
-            <button onclick="go('partner')">پارتنر مکالمه</button>
-            <button onclick="go('support')">سؤالات متداول</button>
-            <button onclick="go('notifications')">اعلان‌ها</button>
-          </div>
-        </section>
-        <section>
-          <h2>تماس با ما</h2>
-          <p class="footer-links">۰۲۱-۱۲۳۴۵۶۷۸<br>hello@ava-academy.ir</p>
-          <div style="display:flex;gap:14px;margin-top:14px;color:#dbeafe">
-            <i data-lucide="instagram" style="width:20px;height:20px"></i>
-            <i data-lucide="send" style="width:20px;height:20px"></i>
-            <i data-lucide="linkedin" style="width:20px;height:20px"></i>
-          </div>
-        </section>
-      </div>
-      <div class="footer-bottom">
-        © تمامی حقوق این وب‌سایت محفوظ است.
-        <button onclick="go('terms')" style="text-decoration:underline;margin-inline-start:12px">Terms &amp; Conditions</button>
-        <button onclick="go('privacy')" style="text-decoration:underline;margin-inline-start:12px">Privacy Policy</button>
-      </div>
-    </div>
-  </footer>
-
-  <nav class="bottom-nav" aria-label="ناوبری پایین">
-    <div class="wrap">
-      <button class="bottom-link" data-route="home" onclick="go('home')"><i data-lucide="home" style="width:20px;height:20px"></i>خانه</button>
-      <button class="bottom-link" data-route="courses" onclick="go('courses')"><i data-lucide="book-open" style="width:20px;height:20px"></i>دوره‌ها</button>
-      <button class="bottom-link" data-route="partner" onclick="go('partner')"><i data-lucide="messages-square" style="width:20px;height:20px"></i>پارتنر</button>
-      <button class="bottom-link" data-route="dashboard" onclick="go('dashboard')"><i data-lucide="layout-dashboard" style="width:20px;height:20px"></i>داشبورد</button>
-      <button class="bottom-link" data-route="signup" onclick="go('signup')"><i data-lucide="user-plus" style="width:20px;height:20px"></i>ثبت‌نام</button>
-    </div>
-  </nav>
-
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
-  <script src="assets/app.js"></script>
+  <main id="app" tabindex="-1"></main>
+  <noscript><p class="notice">برای نمایش صفحات و تمرین‌ها جاوااسکریپت مرورگر را فعال کنید.</p></noscript>
+  <footer class="footer"><div class="wrap"><div class="footer-grid"><div><a class="brand" href="#/home"><span class="brand-symbol" aria-hidden="true">a<span>•</span></span><span>آکادمی زبان</span></a><p>انگلیسی رو فقط یاد نگیر.<br>به بخشی از زندگی‌ات تبدیلش کن.</p><span class="footer-tag">یک قدم کوچک، هر روز.</span></div><div><h2>مسیرهای یادگیری</h2><a href="#/courses">پکیج‌های انگلیسی</a><a href="#/classes">کلاس‌ها</a><a href="#/library">درس‌های کوتاه</a><a href="#/partner">پارتنر مکالمه</a></div><div><h2>بیشتر آشنا بشیم</h2><a href="#/about">درباره آکادمی</a><a href="#/teachers">مدرس‌ها</a><a href="#/students">هنرجوها</a><a href="#/support">سؤال‌های متداول</a></div><div><h2>کنار تو هستیم</h2><a href="#/contact">تماس و پشتیبانی</a><a href="#/pricing">اشتراک‌ها</a><a href="#/privacy">حریم خصوصی</a><a href="#/terms">شرایط استفاده</a></div></div><div class="footer-bottom"><span>تمام حقوق برای آکادمی محفوظ است.</span><span dir="ltr">Made for your next conversation.</span></div></div></footer>
+  <nav class="bottom-nav" aria-label="ناوبری سریع"><a data-route="home" href="#/home"><i data-lucide="house" aria-hidden="true"></i>خانه</a><a data-route="courses" href="#/courses"><i data-lucide="book-open" aria-hidden="true"></i>پکیج‌ها</a><a data-route="partner" href="#/partner"><i data-lucide="messages-square" aria-hidden="true"></i>مکالمه</a><a data-route="dashboard" href="#/dashboard"><i data-lucide="layout-dashboard" aria-hidden="true"></i>مسیر من</a></nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
