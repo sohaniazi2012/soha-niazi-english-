@@ -159,6 +159,13 @@ test('successful AI start cannot create a duplicate active conversation', async 
   assert.equal(a.run('conversation.messages.length'),1);
 });
 
+test('teacher page identifies Soha Niazi without changing the student page', () => {
+  const a=app();
+  assert.match(a.run('people()'),/سها نیازی · مدرس زبان انگلیسی/);
+  assert.match(a.run('people(true)'),/تجربه هنرجوها به‌زودی اینجاست/);
+  assert.ok(!a.run('people(true)').includes('سها نیازی'));
+});
+
 test('logout clears conversation and authentication state', async () => {
   const a=app();
   a.run("previewLogin(); conversation.session='example'; conversation.messages=[{role:'user',text:'Private'}]; auth.phone='09123456789';");
