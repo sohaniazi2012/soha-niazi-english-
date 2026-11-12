@@ -36,23 +36,12 @@ test('normalizes English recall and Persian/Arabic mobile digits', () => {
   assert.ok(!Learning.validPhone('9123456789'));
 });
 
-test('SRS follows day 2, 4 and 7 and repeats difficult cards sooner', () => {
-  const DAY = 86400000;
-  let progress = Learning.complete({cards:{},activities:[]},'ice',0);
-  assert.equal(progress.cards.ice.due,DAY);
-  assert.deepEqual(Learning.dueCards(progress,DAY-1),[]);
-  assert.deepEqual(Learning.dueCards(progress,DAY),['ice']);
-  let card = Learning.nextReview(progress.cards.ice,true,DAY);
-  assert.equal(card.due,3*DAY);
-  card = Learning.nextReview(card,true,3*DAY);
-  assert.equal(card.due,6*DAY);
-  card = Learning.nextReview(card,true,6*DAY);
-  assert.equal(card.repetitions,3);
-  assert.deepEqual(Learning.dueCards({cards:{ice:card}},20*DAY),[]);
-  card = Learning.nextReview(card,false,20*DAY);
-  assert.equal(card.repetitions,0);
-  assert.equal(card.due,20*DAY + 600000);
-  assert.equal(Learning.complete(progress,'ice',DAY),progress);
+test('lesson completion saves progress exactly once', () => {
+  const original = {cards:{},activities:[]};
+  const progress = Learning.complete(original,'ice',1000);
+  assert.equal(progress.cards.ice.completedAt,1000);
+  assert.equal(progress.activities.length,1);
+  assert.equal(Learning.complete(progress,'ice',2000),progress);
 });
 
 test('free conversation rule rejects the sixth conversation', () => {
@@ -121,18 +110,9 @@ test('lesson cannot complete without successful recall and apply', () => {
   assert.ok(JSON.parse(a.data.get('academy.progress')).cards.ice);
 });
 
-test('review only grades the current revealed card once', () => {
-  const a=app();
-  a.run("progress.cards.ice={due:0,repetitions:0}; reviewIds=['ice']; gradeReview('ice',true)");
-  assert.equal(a.run('progress.cards.ice.repetitions'),0);
-  a.run("revealed=true; gradeReview('ice',true); gradeReview('ice',true)");
-  assert.equal(a.run('progress.cards.ice.repetitions'),1);
-  assert.equal(a.run('progress.activities.length'),1);
-});
-
 test('preview does not overwrite another account learning history', () => {
   const a=app({'academy.profile':JSON.stringify({id:'user-a',name:'Test',preview:false}),
-    'academy.progress.user-a':JSON.stringify({cards:{ice:{due:123}},activities:[],drafts:{}})});
+    'academy.progress.user-a':JSON.stringify({cards:{ice:{completedAt:123}},activities:[],drafts:{}})});
   assert.equal(a.run('Object.keys(progress.cards).length'),1);
   a.run('previewLogin()');
   assert.equal(a.run('Object.keys(progress.cards).length'),0);
